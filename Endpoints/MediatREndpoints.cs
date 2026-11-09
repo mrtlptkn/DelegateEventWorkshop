@@ -18,11 +18,11 @@ public static class MediatREndpoints
         var group = app.MapGroup("/api/mediatr").WithTags("1.1 Delegate");
 
         // Strateji değiştirme: işlem adına göre doğru delegate seçilir.
-        group.MapGet("/demo", async (OrderRules rules, DiscountSettings settings, ISender sender) =>
+        group.MapPost("/demo", async (OrderRules rules, DiscountSettings settings, ISender sender) =>
         {
 
             rules.Add("Quantity must be positive", order => order.Quantity > 0);
-            rules.Add("Total must not exceed 10000", order => order.Quantity * order.UnitPrice <= 1000m);
+            rules.Add("Total must not exceed 10000", order => order.Quantity * order.UnitPrice <= 100m);
 
 
             //// sample01
@@ -38,7 +38,7 @@ public static class MediatREndpoints
 
             // sample03
             settings.Discount = Discounts.NoDiscount;
-            var command3 = new PlaceOrderCommand(new Order("Charlie", "Thingamajig", 10, 5000m));
+            var command3 = new PlaceOrderCommand(new Order("Charlie", "Thingamajig", 1, 50m));
             var response3 = await sender.Send(command3);
 
 

@@ -11,3 +11,8 @@ Accept: application/json
 ### Lab Endpoint
 GET {{baseUrl}}/api/delegates/lab
 Accept: application/json
+
+
+### Demo Endpoint
+POST {{baseUrl}}/api/mediatr/demo
+Accept: application/json
